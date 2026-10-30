@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wiring 101 · Wiring Bench MY</title>
+<meta name="description" content="A primer on Malaysian domestic electrical wiring: supply, conductors and colours, cable sizes, circuits, terminal markings, safe isolation and testing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="css/app.css">
+<style>
+  .article { max-width: 760px; margin: 0 auto; }
+  .article h1 { font-size: 2rem; font-weight: 700; line-height: 1.15; margin: 0 0 8px; }
+  .article h2 { font-size: 1.25rem; font-weight: 700; margin: 36px 0 10px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .article h3 { font-size: 1rem; font-weight: 700; margin: 20px 0 6px; }
+  .article p, .article li { font-size: 15px; line-height: 1.6; }
+  .article p { margin: 0 0 12px; }
+  .article ul, .article ol { margin: 0 0 12px; padding-left: 22px; }
+  .article li { margin-bottom: 4px; }
+  .article table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 8px 0 16px; }
+  .article th, .article td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .article th { font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .article td:first-child { font-weight: 600; white-space: nowrap; }
+  .article .mono { font-family: var(--font-mono); font-size: 13px; }
+  .callout { border-left: 4px solid var(--danger); background: var(--danger-soft); border-radius: 8px; padding: 12px 16px; margin: 14px 0 18px; }
+  .callout.tip { border-left-color: var(--accent); background: var(--panel-2); }
+  .callout p:last-child { margin: 0; }
+  .toc { background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; margin: 18px 0 8px; }
+  .toc ol { margin: 6px 0 0; padding-left: 20px; columns: 2; column-gap: 24px; }
+  .toc li { font-size: 14px; }
+  .toc a, .article a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .toc a:hover, .article a:hover { text-decoration: underline; }
+  .swatch-row { display: flex; gap: 6px; align-items: center; }
+  .sw { width: 34px; height: 10px; border-radius: 999px; display: inline-block; }
+  .try { display: inline-block; font-size: 12.5px; font-weight: 600; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); margin-left: 6px; text-decoration: none; vertical-align: middle; }
+  @media (max-width: 560px) { .toc ol { columns: 1; } .article td:first-child { white-space: normal; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <article class="article">
+    <div class="eyebrow mb-2"><a href="index.html" style="color:var(--accent)">← Back to the bench</a></div>
+    <h1>Wiring 101: Malaysian domestic wiring from the supply to the socket</h1>
+    <p style="color:var(--muted)">What a wireman needs in their head before opening a backbox. Read this once, then go and break things safely on the <a href="index.html">bench</a>.</p>
+
+    <div class="callout">
+      <p><b>This primer does not make you a wireman.</b> In Malaysia, fixed electrical work must be done or supervised by a wireman registered with Suruhanjaya Tenaga (the Energy Commission), under the Electricity Supply Act 1990 and the Electricity Regulations 1994. Use this to understand your installation and to learn. Never work on a live circuit.</p>
+    </div>
+
+    <nav class="toc" aria-label="Contents">
+      <div class="eyebrow">Contents</div>
+      <ol>
+        <li><a href="#supply">How power reaches the house</a></li>
+        <li><a href="#conductors">The three conductors</a></li>
+        <li><a href="#colours">Colour code, old and new</a></li>
+        <li><a href="#cables">Cable sizes and breakers</a></li>
+        <li><a href="#circuits">The circuits in a Malaysian home</a></li>
+        <li><a href="#markings">Reading terminal markings</a></li>
+        <li><a href="#switching">Switching rules</a></li>
+        <li><a href="#earthing">Earthing and RCDs</a></li>
+        <li><a href="#isolation">Safe isolation</a></li>
+        <li><a href="#testing">Testing before energising</a></li>
+        <li><a href="#faults">Faults you will meet</a></li>
+        <li><a href="#tools">Tools and good habits</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="supply">1. How power reaches the house</h2>
+    <p>Tenaga Nasional Berhad (TNB) delivers single-phase 240 V at 50 Hz to most terrace, flat and apartment units, and three-phase 415 V to larger homes with heavy air-conditioning or EV charging. The service cable lands at the <b>meter</b>, then the <b>main switch</b> and <b>consumer unit</b> (distribution board, often just called the DB).</p>
+    <p>Inside the consumer unit the supply passes through a <b>residual current device</b> (RCD, still widely called an ELCB) and is then split into <b>final circuits</b>, each protected by a miniature circuit breaker (MCB). Every circuit on the bench starts at one of those MCBs.</p>
+    <p>Older houses use a TT earthing arrangement with a local earth rod. Newer supplies are commonly TNC-S (PME), where TNB provides the earth. Either way, every final circuit carries its own protective conductor back to the earth bar.</p>
+
+    <h2 id="conductors">2. The three conductors</h2>
+    <table>
+      <thead><tr><th>Conductor</th><th>Job</th><th>Voltage to earth</th><th>Carries current?</th></tr></thead>
+      <tbody>
+        <tr><td>Live (L), <i>hidup</i></td><td>Brings energy from the supply. Every switch, fuse and MCB sits in this conductor.</td><td>240 V</td><td>Yes, in normal use</td></tr>
+        <tr><td>Neutral (N)</td><td>Returns current to the supply. Bonded to earth at the intake, so it sits near 0 V, but it is still a current-carrying conductor and can float above earth under fault.</td><td>About 0 V</td><td>Yes, in normal use</td></tr>
+        <tr><td>Earth (E / CPC), <i>bumi</i></td><td>Protective conductor. Connects every exposed metal part back to the earth bar so that a fault becomes a large current that trips protection quickly.</td><td>0 V</td><td>Only during a fault</td></tr>
+      </tbody>
+    </table>
+    <p>Two rules fall straight out of this table. Only the live is switched or fused. The earth never carries load current.</p>
+
+    <h2 id="colours">3. Colour code, old and new</h2>
+    <p>Malaysia adopted the IEC harmonised colours (MS IEC 60364, with cables to MS 2112 carrying the SIRIM mark). Older installations, roughly pre-2008, still use the previous British scheme. You will meet both, sometimes in the same house.</p>
+    <table>
+      <thead><tr><th>Conductor</th><th>Harmonised (current)</th><th>Old scheme</th></tr></thead>
+      <tbody>
+        <tr><td>Live</td><td><span class="swatch-row"><span class="sw" style="background:var(--wire-L)"></span>Brown</span></td><td>Red</td></tr>
+        <tr><td>Neutral</td><td><span class="swatch-row"><span class="sw" style="background:var(--wire-N)"></span>Blue</span></td><td>Black</td></tr>
+        <tr><td>Earth</td><td><span class="swatch-row"><span class="sw chip-E"></span>Green / yellow</span></td><td>Green (or bare, to be sleeved)</td></tr>
+        <tr><td>Switched live</td><td>Brown, or blue sleeved brown at both ends</td><td>Red, or black sleeved red</td></tr>
+        <tr><td>Three-phase lives</td><td>Brown, black, grey</td><td>Red, yellow, blue</td></tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <p><b>The trap:</b> old <i>black</i> was neutral; new <i>black</i> is a phase conductor. Old <i>blue</i> was a phase; new <i>blue</i> is neutral. Where both schemes meet, the Regulations require a warning label at the board, and you must test rather than trust a colour.</p>
+    </div>
+    <p>On the extra-low-voltage side of an LED driver or bell transformer, red (+) and black (−) are conventional. Keep ELV wiring physically separated from mains terminals.</p>
+
+    <h2 id="cables">4. Cable sizes and breakers</h2>
+    <p>Domestic wiring is mostly PVC-insulated single cores in conduit, or PVC twin-and-earth. The conductor size is chosen so the cable can carry the breaker's rating without overheating, with the installation method taken into account. Typical pairings:</p>
+    <table>
+      <thead><tr><th>Circuit</th><th>Conductor</th><th>MCB</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>Lighting</td><td>1.5 mm²</td><td>6 A or 10 A</td><td>Type B. One circuit per floor is common.</td></tr>
+        <tr><td>Socket ring final</td><td>2.5 mm²</td><td>32 A</td><td>Allowed on 32 A only because the ring shares current between two legs.</td></tr>
+        <tr><td>Socket radial</td><td>2.5 mm²</td><td>20 A</td><td>Up to about 50 m² floor area.</td></tr>
+        <tr><td>Water heater, air-conditioner</td><td>2.5 mm² or 4 mm²</td><td>20 A</td><td>Dedicated circuit with a double-pole isolator at the appliance.</td></tr>
+        <tr><td>Cooker, oven</td><td>6 mm²</td><td>32 A</td><td>Cooker control unit with DP switch.</td></tr>
+        <tr><td>EV charger</td><td>6 mm² or 10 mm²</td><td>32 A or 40 A</td><td>Type A or B RCD, separate circuit.</td></tr>
+      </tbody>
+    </table>
+    <p>Breaker letters describe how fast the magnetic trip reacts: <b>B</b> trips at 3 to 5 times rated current (lighting, sockets), <b>C</b> at 5 to 10 times (motors, air-conditioner compressors, workshop sockets). Fitting a C-type where a B-type belongs makes a fault take longer to clear.</p>
+
+    <h2 id="circuits">5. The circuits in a Malaysian home</h2>
+    <h3>Lighting</h3>
+    <p>A permanent live loops from fitting to fitting (or from switch to switch, in conduit installations). At each light, a <b>switch drop</b> takes the live down to the switch and the <b>switched live</b> back up to the lamp. Neutrals never visit a one-way switch; they are joined at the fitting or in a connector block. <a class="try" href="index.html">Try: 1-way switch, ceiling rose</a></p>
+    <h3>Two-way lighting</h3>
+    <p>Staircases and long corridors use two 2-way switches. Permanent live goes to COM of the first switch, two <b>strappers</b> join L1 to L1 and L2 to L2, and the switched live leaves from COM of the second switch. Either switch then changes the lamp state. Add intermediate switches between them for three or more positions. <a class="try" href="index.html">Try: 2-way staircase</a></p>
+    <h3>Socket outlets</h3>
+    <p>13 A switched sockets to BS 1363 / MS 589 on a ring final or a radial. On a ring, every socket terminal receives two conductors, one from each leg. Spurs off the ring are allowed, one unfused spur per socket. <a class="try" href="index.html">Try: 13 A socket, ring final</a></p>
+    <h3>Fixed appliances</h3>
+    <p>Water heaters, air-conditioners, cooker hoods and the like are fed through a <b>fused connection unit</b> (FCU) or a <b>double-pole isolator</b>, not a plug. The FCU adds a local fuse sized for the appliance; the DP isolator breaks both live and neutral so the appliance is truly dead for maintenance. <a class="try" href="index.html">Try: DP isolator, fused spur</a></p>
+    <h3>LED and ELV lighting</h3>
+    <p>LED strips and some downlights run on 12 V or 24 V DC from a <b>driver</b>. The driver's mains side is wired like any other load, switched in the live. Its output is SELV: safe to touch, but polarity-sensitive and unforgiving of mains contact. <a class="try" href="index.html">Try: switch + LED strip</a></p>
+
+    <h2 id="markings">6. Reading terminal markings</h2>
+    <p>Accessories are not labelled "live, neutral, earth". They carry short embossed marks, and the earth is almost always a symbol, not a letter. Learn these and a backbox stops looking like a puzzle.</p>
+    <table>
+      <thead><tr><th>Mark</th><th>Found on</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">L</td><td>Sockets, FCUs, isolators, drivers</td><td>Live terminal.</td></tr>
+        <tr><td class="mono">N</td><td>Sockets, FCUs, isolators, roses, drivers</td><td>Neutral terminal.</td></tr>
+        <tr><td class="mono">⏚</td><td>Everything with an earth terminal</td><td>Protective earth (IEC 60417-5019). Some plates print <span class="mono">E</span> or <span class="mono">PE</span> instead.</td></tr>
+        <tr><td class="mono">COM</td><td>Switches</td><td>Common. Permanent live in on the first switch; switched live out on the last.</td></tr>
+        <tr><td class="mono">L1, L2</td><td>Switches</td><td>Switched outputs. A 1-way switch uses COM and L1 only. A 2-way uses both as strappers. Some brands mark them <span class="mono">1</span> and <span class="mono">2</span>.</td></tr>
+        <tr><td class="mono">LOOP IN</td><td>Ceiling roses</td><td>Permanent live loop terminal. Live with the switch off.</td></tr>
+        <tr><td class="mono">SW L</td><td>Ceiling roses</td><td>Switched live, where the pendant live lands.</td></tr>
+        <tr><td class="mono">FEED / SUPPLY / IN</td><td>FCUs, DP switches</td><td>The circuit cable goes here.</td></tr>
+        <tr><td class="mono">LOAD / OUT</td><td>FCUs, DP switches</td><td>The appliance goes here, after the fuse and switch.</td></tr>
+        <tr><td class="mono">+V, −V, V+, V−, +12V, GND</td><td>LED drivers and strips</td><td>Extra-low-voltage DC output. Polarity matters.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout tip">
+      <p>The bench defaults to these product markings. If you are just starting, press <b>Labels: product markings</b> to switch to training letters, and switch back once the symbols feel familiar.</p>
+    </div>
+    <p>Orientation matters too. Looking at the <i>back</i> of a BS 1363 socket, the earth is at the top, live on the left and neutral on the right, the mirror image of the front.</p>
+
+    <h2 id="switching">7. Switching rules</h2>
+    <ul>
+      <li><b>Switch the live, never the neutral.</b> A switch in the neutral turns the lamp off but leaves the lampholder at 240 V. MS IEC 60364-5-53.</li>
+      <li><b>Fuses go in the live.</b> Same reason. The plug fuse, the FCU fuse and the MCB all sit in the live conductor.</li>
+      <li><b>Double-pole for wet areas and fixed appliances.</b> Water heaters, air-conditioners and cookers get a DP isolator that breaks L and N together.</li>
+      <li><b>Sleeve switched lives.</b> A blue core used as a switch return is a live; mark it brown at both ends.</li>
+      <li><b>Neutrals do not visit a one-way switch.</b> If you find a neutral in a switch box, it is either a loop-through to another fitting or a mistake.</li>
+    </ul>
+
+    <h2 id="earthing">8. Earthing and RCDs</h2>
+    <p>Earthing has one purpose: when insulation fails and a live conductor touches metal, the earth gives that current a low-resistance path back to the supply. The current is then large enough to open the MCB in well under a second. Without earth, the metal sits at 240 V until someone touches it.</p>
+    <p>An RCD adds a second layer. It compares live and neutral current; any difference above 30 mA (current leaking to earth, possibly through a person) opens it within about 40 ms. Suruhanjaya Tenaga requires RCD protection on domestic installations. The RCD does not detect reversed polarity, overloads or L–N shorts; those are the MCB's job.</p>
+    <ul>
+      <li>Earth every metal backbox, even behind a plastic plate.</li>
+      <li>Earth every class I appliance (anything with a metal case and an earth terminal). A class II (double-insulated, square-in-square symbol) appliance has no earth terminal and needs none.</li>
+      <li>Never join neutral to earth in a circuit. They meet once, at the intake.</li>
+      <li>Bond incoming metal water and gas pipes to the main earth terminal.</li>
+    </ul>
+
+    <h2 id="isolation">9. Safe isolation</h2>
+    <p>Every job on the bench begins with the breaker already off. On a real job you make that true yourself, and you prove it:</p>
+    <ol>
+      <li><b>Identify</b> the circuit and tell anyone affected.</li>
+      <li><b>Switch off</b> the MCB (or the main switch if unsure) and <b>lock it off</b> or tape it with a notice.</li>
+      <li><b>Prove the tester</b> on a known live source or a proving unit.</li>
+      <li><b>Test dead</b> at the point of work: L–N, L–E, N–E.</li>
+      <li><b>Prove the tester again.</b> A dead tester reads zero on a live circuit.</li>
+    </ol>
+    <p>Do not use a neon screwdriver as a test instrument. Remember that a ceiling rose's LOOP terminal and a 2-way switch's strappers can be live from a different circuit than the one you switched off.</p>
+
+    <h2 id="testing">10. Testing before energising</h2>
+    <p>Wiring correctly is half the job. Proving it is the other half, and the Electricity Regulations require installations to be tested before they are put into service. Dead tests first, live tests after.</p>
+    <table>
+      <thead><tr><th>Test</th><th>What it proves</th><th>Catches</th></tr></thead>
+      <tbody>
+        <tr><td>Continuity of CPC</td><td>Every earth terminal is connected back to the board.</td><td>Missing earth</td></tr>
+        <tr><td>Ring continuity (r1, rn, r2)</td><td>Both legs of a ring are complete and not cross-connected.</td><td>Broken ring, interconnected rings</td></tr>
+        <tr><td>Insulation resistance</td><td>No leakage between L, N and E at 500 V DC.</td><td>Damaged insulation, trapped cores</td></tr>
+        <tr><td>Polarity</td><td>Live is on the correct terminal of every accessory and every switch is in the live.</td><td>Reversed polarity, switched neutral</td></tr>
+        <tr><td>Earth fault loop impedance (Zs)</td><td>A fault will draw enough current to trip the MCB in time.</td><td>High-resistance earth paths</td></tr>
+        <tr><td>RCD trip test</td><td>The RCD opens within its time limit at rated residual current.</td><td>Failed or sticky RCD</td></tr>
+      </tbody>
+    </table>
+    <p>A plug-in socket tester is a quick sanity check, not a test. It cannot see a broken ring, a high-impedance earth or a shared neutral.</p>
+
+    <h2 id="faults">11. Faults you will meet</h2>
+    <p>Every one of these is a scenario on the bench. The dangerous ones are the ones where everything appears to work.</p>
+    <table>
+      <thead><tr><th>Fault</th><th>Symptom</th><th>Why it is dangerous</th></tr></thead>
+      <tbody>
+        <tr><td>Reversed polarity</td><td>Everything works</td><td>Plug fuse and appliance switch are in the neutral. "Off" appliances stay live inside.</td></tr>
+        <tr><td>Missing earth</td><td>Everything works</td><td>First insulation fault puts 240 V on the casing with nothing to clear it.</td></tr>
+        <tr><td>Switch in the neutral</td><td>Light switches normally</td><td>Lampholder is live with the switch off. Shock while changing a bulb.</td></tr>
+        <tr><td>Broken ring</td><td>Sockets work</td><td>2.5 mm² cable now protected by a 32 A breaker. Overheats under load without tripping.</td></tr>
+        <tr><td>Single-pole isolation on a heater</td><td>Heater works</td><td>Neutral still connected in a wet area. Shock during maintenance.</td></tr>
+        <tr><td>FCU feed and load swapped</td><td>Appliance works</td><td>Fuse carrier live with the switch off.</td></tr>
+        <tr><td>L–N short</td><td>MCB trips instantly</td><td>Arc at the terminal. Safe only because the breaker did its job.</td></tr>
+        <tr><td>L–E or N–E fault</td><td>RCD trips</td><td>Earthed metalwork briefly carried fault current.</td></tr>
+        <tr><td>Mains on an LED strip</td><td>Flash, smoke, silence</td><td>Strip and driver destroyed; metal channel briefly live.</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="tools">12. Tools and good habits</h2>
+    <ul>
+      <li>VDE-insulated screwdrivers and side cutters; a two-pole voltage tester with a proving unit; a multifunction tester for the tests above.</li>
+      <li>Strip only as much insulation as the terminal depth. No bare copper outside the terminal, no insulation trapped under the screw.</li>
+      <li>Two conductors per terminal is normal; three is the usual maximum. Lay cores side by side, never twisted.</li>
+      <li>Tighten, then tug-test every core. Loose terminals are the leading cause of overheating at accessories.</li>
+      <li>Leave slack in the box. A cable cut to the millimetre cannot be re-terminated later.</li>
+      <li>Label anything unusual: mixed colour schemes, borrowed neutrals, circuits fed from another board.</li>
+      <li>Close up only after testing, and record the results.</li>
+    </ul>
+
+    <p class="mt-8"><a href="index.html">← Back to the bench</a> and try the fault-finding scenarios with the product markings on.</p>
+    <p class="text-xs" style="color:var(--muted)">References named here (MS IEC 60364, MS 2112, MS 589, Electricity Supply Act 1990, Electricity Regulations 1994) are cited from general knowledge of the Malaysian framework. Check the current editions before relying on a specific clause.</p>
+  </article>
+</div>
+</body>
+</html>

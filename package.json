@@ -1,0 +1,10 @@
+{
+  "name": "wiring-bench-my",
+  "private": true,
+  "type": "module",
+  "description": "Interactive Malaysian domestic wiring trainer (static site)",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "test": "node test/engine.test.js"
+  }
+}
